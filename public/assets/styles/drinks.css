@@ -100,7 +100,27 @@ h1#featured-recipes {
   justify-content: center;
   margin-top: 10px;
 }
+.button-container {
+  display: flex;
+  justify-content: flex;
+  gap: 10px; /* Adds space between the buttons */
+  margin-top: 10px; /* Adds space above the buttons */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
 
+@media only screen and (max-width:900px){
+
+  .title.is-4.has-text-black{
+    padding-bottom: 1px;
+    overflow: hidden;
+  }
+  .subtitle.is-6.has-text-black {
+    
+    overflow: hidden;
+    
+  }
+  
+}
 @media only screen and (max-width: 576px) {
   #food-return {
     width: 100%;
@@ -143,4 +163,7 @@ h1#featured-recipes {
   #random-drinks:hover {
     box-shadow: 0px 3px 2px #dc7a4a;
   }
+ 
+  
+
 }

@@ -209,6 +209,8 @@ function showDrinkRecipes(drinkRecipes) {
         nextLink.setAttribute("href", thisDrinkURL);
         nextLink.setAttribute("target", "_blank");
         nextLink.textContent = "GO TO COCKTAIL RECIPE";
+        let buttonContainer = document.createElement("div");
+        buttonContainer.setAttribute("class", "button-container");
 
         let saveButton = document.createElement("button");
 
@@ -220,6 +222,10 @@ function showDrinkRecipes(drinkRecipes) {
             saveButton.setAttribute("class", "button is-info");
             saveButton.textContent = "SAVE ME!";
         }
+        let shareButton = document.createElement("button");
+        shareButton.setAttribute("class", "button is-primary");
+        shareButton.textContent = "SHARE";
+
 
         // Append elements to their parents
         modalContentEl.appendChild(nextCard);
@@ -234,7 +240,9 @@ function showDrinkRecipes(drinkRecipes) {
         nextMediaContent.appendChild(nextRecipeName);
         nextMediaContent.appendChild(nextRecipeURL);
         nextRecipeURL.appendChild(nextLink);
-        nextCardContentDiv.appendChild(saveButton);
+        nextCardContentDiv.appendChild(buttonContainer);
+        buttonContainer.appendChild(saveButton);
+        buttonContainer.appendChild(shareButton);
 
         saveButton.addEventListener("click", function(event) {
             event.preventDefault();
@@ -247,6 +255,20 @@ function showDrinkRecipes(drinkRecipes) {
                 showFavorites(savedDrinks);
             }
         })
+
+        shareButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (navigator.share) {
+                navigator.share({
+                    title: nextDrinkRecipe.name,
+                    url: nextDrinkRecipe.url
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch(console.error);
+            } else {
+                alert('Web Share API is not supported in your browser.');
+            }
+        });
 
         
     }

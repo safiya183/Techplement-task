@@ -210,7 +210,11 @@ function showRecipes(recipes) {
         let nextLink = document.createElement("a");
         nextLink.setAttribute("href", nextRecipe.url);
         nextLink.setAttribute("target", "_blank");
+    
         nextLink.textContent = "GO TO FOOD RECIPE";
+
+        let buttonContainer = document.createElement("div");
+        buttonContainer.setAttribute("class", "button-container");
 
         let saveButton = document.createElement("button");
         
@@ -222,7 +226,9 @@ function showRecipes(recipes) {
             saveButton.setAttribute("class", "button is-info");
             saveButton.textContent = "SAVE ME!";
         }
-        
+        let shareButton = document.createElement("button");
+        shareButton.setAttribute("class", "button is-primary");
+        shareButton.textContent = "SHARE";
 
 
 
@@ -238,7 +244,9 @@ function showRecipes(recipes) {
         nextMediaContent.appendChild(nextRecipeName);
         nextMediaContent.appendChild(nextRecipeURL);
         nextRecipeURL.appendChild(nextLink);
-        nextCardContentDiv.appendChild(saveButton);
+        nextCardContentDiv.appendChild(buttonContainer);
+        buttonContainer.appendChild(saveButton);
+        buttonContainer.appendChild(shareButton);
 
         
         saveButton.addEventListener("click", function(event) {
@@ -253,6 +261,19 @@ function showRecipes(recipes) {
             }
         })
         
+        shareButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            if (navigator.share) {
+                navigator.share({
+                    title: nextRecipe.name,
+                    url: nextRecipe.url
+                }).then(() => {
+                    console.log('Thanks for sharing!');
+                }).catch(console.error);
+            } else {
+                alert('Web Share API is not supported in your browser.');
+            }
+        });
     }
 }
 

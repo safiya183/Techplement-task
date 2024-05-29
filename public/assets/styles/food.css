@@ -1,4 +1,5 @@
 
+
 i.fas.fa-glass-whiskey {
     color: rgb(17, 110, 163);
     font-size: 2.5rem;
@@ -91,7 +92,29 @@ h2 {
   justify-content: center;
   margin-top: 10px;
 }
+.button-container {
+  display: flex;
+  justify-content: flex;
+  gap: 10px; /* Adds space between the buttons */
+  margin-top: 10px; /* Adds space above the buttons */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
 
+@media only screen and (max-width:900px){
+
+  .title.is-4.has-text-black{
+    padding-bottom: 1px;
+    overflow: hidden;
+  }
+  .subtitle.is-6.has-text-black {
+    
+    overflow: hidden;
+    
+  }
+  
+
+
+}
 @media only screen and (max-width: 576px) {
   #food-return {
     width: 100%;
@@ -103,4 +126,7 @@ h2 {
     margin: auto;
     margin-bottom: -20px;
   }
+
+
+
 }
